@@ -1,7 +1,7 @@
 void main() {
 	int MIN_PRICE = 30000000;
 
-	print("=== Mall Speculation Scan ===", "blue");
+	print("=== Mall Speculation Scan (Compatible Version) ===", "blue");
 
 	foreach it in $items[] {
 		if (!is_tradeable(it)) continue;
@@ -13,22 +13,15 @@ void main() {
 		if (npc_price(it) > 0) continue;
 
 		int auto = autosell_price(it);
-		int listings = mall_listing_count(it);
 
-		boolean low_supply = (listings > 0 && listings <= 5);
-		boolean big_gap = (auto > 0 && price > auto * 500);
-
-		if (!low_supply && !big_gap) continue;
-
-		print(
-			it +
-			" | price: " + price +
-			" | autosell: " + auto +
-			" | listings: " + listings,
-			"green"
-		);
+		// Only filter by high gap or high price
+		if (auto > 0 && price > auto * 500) {
+			print(
+				it + " | price: " + price + " | autosell: " + auto,
+				"green"
+			);
+		}
 	}
 
 	print("=== Scan Complete ===", "blue");
 }
-
