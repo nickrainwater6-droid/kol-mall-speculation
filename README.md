@@ -1,1 +1,1 @@
-# kol-mall-speculation
+# mr-store-speculation
